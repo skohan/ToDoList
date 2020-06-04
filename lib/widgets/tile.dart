@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class MyTile extends StatelessWidget {
 
   String title = "Undecided";
-  void Function(int) delete;
-  void Function(int) update;
+  VoidCallback delete;
+  VoidCallback update;
   int index;
   MyTile(this.index,{this.title, this.delete,this.update});
 
@@ -25,11 +25,11 @@ class MyTile extends StatelessWidget {
           title: Text(title),
           trailing: IconButton(
             icon: Icon(Icons.delete),
-            onPressed: (){delete(index);}
+            onPressed: delete
           ),
           leading: IconButton(
             icon: Icon(Icons.edit),
-            onPressed: (){update(index);}
+            onPressed: update
           ),
         ),
       ),
