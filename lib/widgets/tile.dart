@@ -5,8 +5,8 @@ class MyTile extends StatelessWidget {
   String title = "Undecided";
   VoidCallback delete;
   VoidCallback update;
-  int index;
-  MyTile(this.index,{this.title, this.delete,this.update});
+
+  MyTile({this.title, this.delete,this.update});
 
   @override
   Widget build(BuildContext context) {

@@ -14,6 +14,9 @@ class TodoModel{
 
   void add(String todo){
     this.todos.add(todo);
+    for (var item in this.todos) {
+      print(item);
+    }
   }
 
   void update(int index, String newTodo){
