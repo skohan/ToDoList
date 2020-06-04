@@ -46,9 +46,6 @@ class _HomeState extends State<Home> {
             FlatButton(onPressed: (){ 
               index==null?todoBloc.addTodo(context,tec.text):todoBloc.updateTodo(context,index,tec.text);
               Navigator.of(context).pop();
-              setState(() {
-                
-              });
             }, 
             child: Text("Add!")),
           ],
@@ -70,6 +67,7 @@ class _HomeState extends State<Home> {
                 builder: (context, state) => ListView.builder(
                 itemCount: state.todoModel.todos.length,
                 itemBuilder: (contex,index){
+                  print(state.todoModel.todos.length);
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: MyTile(

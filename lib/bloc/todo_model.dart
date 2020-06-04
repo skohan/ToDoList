@@ -1,11 +1,11 @@
 
 // A model for data/states to pass
 
+import 'package:flutter/cupertino.dart';
 
+@immutable
 class TodoModel{
-  List<String> todos = [];
-
-  TodoModel({this.todos});
+  final List<String> todos = [];
 
 
   void remove(int index){
