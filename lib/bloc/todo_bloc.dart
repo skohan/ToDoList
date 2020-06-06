@@ -11,7 +11,7 @@ class TodoBloc extends Bloc<TodoEvents, TodoState>{
   TodoState get initialState => TodoState.initial();
 
   void addTodo(BuildContext context, String newTodo) async{
-    print(newTodo);
+    // print(newTodo);
     this.add(AddTodo(todo: newTodo));
   }
 
@@ -33,16 +33,19 @@ class TodoBloc extends Bloc<TodoEvents, TodoState>{
     if(event is AddTodo){
       print(event.todo);
       _currentState.todoModel.add(event.todo);
-      yield _currentState;
+      for(var item in _currentState.todoModel.todos){
+        print(item);
+      }
+      yield new TodoState(todoModel: _currentState.todoModel);
 
     }
     if(event is RemoveTodo){
       _currentState.todoModel.remove(event.index);
-      yield _currentState;
+      yield new TodoState(todoModel: _currentState.todoModel);
     }
     if(event is UpdateTodo){
       _currentState.todoModel.update(event.index, event.newTodo);
-      yield _currentState;
+      yield new TodoState(todoModel: _currentState.todoModel);
     }
   }
 
