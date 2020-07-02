@@ -28,9 +28,6 @@ class _HomeState extends State<Home> {
 
   void getTheTextYouFreakingWantFromUserHuh(int index){
 
-    // task = 1 for adding
-    // task = 2 for updating
-
       showDialog(
       context: context,
       builder: (context) {
