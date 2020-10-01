@@ -1,12 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todolist/bloc/apptheme_bloc.dart';
 import 'ui/home.dart' as h;
 
-void main(){
-  runApp(
-    MaterialApp(
-      home: new h.Home(),
-    )
-  );
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider<AppthemeBloc>(
+      create: (context) => AppthemeBloc(),
+      child: BlocBuilder<AppthemeBloc, AppthemeState>(
+        builder: (context, state) {
+          return MaterialApp(
+            theme: state.theme,
+            home: new h.Home(),
+          );
+        },
+      ),
+    );
+  }
 }
 
 // class Home extends StatefulWidget {
@@ -24,7 +39,7 @@ void main(){
 //     super.initState();
 //     controller = new TextEditingController();
 //     todoList = new List();
-//   } 
+//   }
 
 //   @override
 //   void dispose() {
@@ -45,12 +60,12 @@ void main(){
 //           ),
 //           actions: <Widget>[
 //             FlatButton(onPressed: (){ Navigator.of(context).pop();  }, child: Text("Cancel")),
-//             FlatButton(onPressed: (){ 
-//               todoList.add(controller.text);  
-//               controller.text = ""; 
+//             FlatButton(onPressed: (){
+//               todoList.add(controller.text);
+//               controller.text = "";
 //               setState(() {});
-//               Navigator.of(context).pop();  
-//             }, 
+//               Navigator.of(context).pop();
+//             },
 //             child: Text("Add!")),
 //           ],
 //         );
@@ -78,12 +93,12 @@ void main(){
 //           actions: <Widget>[
 //             FlatButton(onPressed: (){  Navigator.of(context).pop();print("object");  return;
 //       }, child: Text("Cancel")),
-//             FlatButton(onPressed: (){ 
-//               todoList[index] = controller.text;   
+//             FlatButton(onPressed: (){
+//               todoList[index] = controller.text;
 //               setState(() {});
-//               controller.text = ""; 
-//               Navigator.of(context).pop();  
-//             }, 
+//               controller.text = "";
+//               Navigator.of(context).pop();
+//             },
 //             child: Text("Update!")),
 //           ],
 //         );
@@ -107,8 +122,8 @@ void main(){
 //                 padding: const EdgeInsets.all(8.0),
 //                 child: MyTile(
 //                   index,
-//                   title:todoList[index], 
-//                   delete: deleteToDo,  
+//                   title:todoList[index],
+//                   delete: deleteToDo,
 //                   update: updateToDo,
 //                 ),
 //               );
@@ -121,4 +136,4 @@ void main(){
 //           )
 //     );
 //   }
-// } 
+// }
