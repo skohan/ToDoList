@@ -64,6 +64,22 @@ class _HomeState extends State<Home> {
         appBar: new AppBar(
           title: Text("Your todo!"),
           centerTitle: true,
+          actions: [
+            Switch(
+              value: _isThemeSwitch,
+              onChanged: (value) {
+                _isThemeSwitch = value;
+                if (_isThemeSwitch) {
+                  BlocProvider.of<AppthemeBloc>(context)
+                      .add(AppThemeEvent(AppTheme.darkTheme));
+                } else {
+                  BlocProvider.of<AppthemeBloc>(context)
+                      .add(AppThemeEvent(AppTheme.lightTheme));
+                }
+                setState(() {});
+              },
+            ),
+          ],
         ),
         body: SafeArea(
           child: BlocBuilder(
@@ -72,20 +88,6 @@ class _HomeState extends State<Home> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Switch(
-                    value: _isThemeSwitch,
-                    onChanged: (value) {
-                      _isThemeSwitch = value;
-                      if (_isThemeSwitch) {
-                        BlocProvider.of<AppthemeBloc>(context)
-                            .add(AppThemeEvent(AppTheme.darkTheme));
-                      } else {
-                        BlocProvider.of<AppthemeBloc>(context)
-                            .add(AppThemeEvent(AppTheme.lightTheme));
-                      }
-                      setState(() {});
-                    },
-                  ),
                   Expanded(
                     child: ListView.builder(
                       itemCount: state.todoModel.todos.length,

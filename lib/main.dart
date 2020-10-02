@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<AppthemeBloc, AppthemeState>(
         builder: (context, state) {
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             theme: state.theme,
             home: new h.Home(),
           );
